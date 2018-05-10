@@ -35,14 +35,15 @@ const prompter = (cz, commit) => {
 const formatCommit = (commit, answers) => {
   const singleTickets = answers.tickets.split(', ')
   const updatedTickets = singleTickets.map((ticket) => {
-    const string = (answers.fix) ? 'fix #' + ticker : '#' + ticket
+    const string = (answers.fix) ? 'fix #' + ticket : '#' + ticket
     return string
   })
 
   commit([
-    `${updatedTickets.join(' ')}:`,
     `[${answers.type}]`,
     answers.message,
+    '|'
+    `${updatedTickets.join(' ')}`,
   ].join(' '))
 }
 
