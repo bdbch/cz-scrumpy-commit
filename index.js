@@ -4,6 +4,12 @@ const { validateMessage, validateTicketIds } = require('./validations')
 const prompter = (cz, commit) => {
   inquirer.prompt([
     {
+      type: 'list',
+      name: 'type',
+      message: 'What type of commit:',
+      choices: ['Feature', 'Bugfix', 'Refactor', 'Style Change', 'Documentation']
+    },
+    {
       type: 'input',
       name: 'message',
       message: 'Commit message (required):\n',
@@ -12,14 +18,7 @@ const prompter = (cz, commit) => {
     {
       type: 'input',
       name: 'tickets',
-      message: 'Scrumpy Ticket IDs (required, split multiple via ", "):\n',
-      validate: validateTicketIds
-    },
-    {
-      type: 'list',
-      name: 'type',
-      message: 'What type of commit:',
-      choices: ['Feature', 'Bugfix', 'Refactor', 'Style Change', 'Documentation']
+      message: 'Scrumpy Ticket IDs (split multiple via ", "):\n'
     },
     {
       type: 'confirm',
@@ -33,16 +32,21 @@ const prompter = (cz, commit) => {
 }
 
 const formatCommit = (commit, answers) => {
-  const singleTickets = answers.tickets.split(', ')
-  const updatedTickets = singleTickets.map((ticket) => {
-    const string = (answers.fix) ? 'fix #' + ticket : '#' + ticket
-    return string
-  })
+  let updatedTickets = false
+  let singleTickets
+
+  if (answers.tickets) {
+    singleTickets = answers.tickets.split(', ')
+    updatedTickets = singleTickets.map((ticket) => {
+      const string = (answers.fix) ? 'fix #' + ticket : '#' + ticket
+      return string
+    })
+  }
 
   commit([
     `[${answers.type}]`,
     answers.message + ' |',
-    `${updatedTickets.join(' ')}`,
+    (updatedTickets) ? `${updatedTickets.join(' ')}` : null,
   ].join(' '))
 }
 

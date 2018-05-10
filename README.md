@@ -6,7 +6,7 @@
 
 # Installation
 
-Make sure you have [Commitzen](https://github.com/commitizen/cz-cli) installed to use `cz-scrumpy-commit`. This package uses ES6 which requires **Node 6 or higher**.
+Make sure you have [Commitizen](https://github.com/commitizen/cz-cli) installed to use `cz-scrumpy-commit`. This package uses ES6 which requires **Node 6 or higher**.
 
 You can install `cz-scrumpy-commit` via 
 
@@ -17,7 +17,7 @@ npm i -g cz-scrumpy-commit
 When npm finished the installation, you need to run the following command to add `cz-scrumpy-commit` to your commitizen configuration.
 
 ```sh
-echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+echo '{ "path": "cz-scrumpy-commit" }' > ~/.czrc
 ```
 
 You can also use commitizen to initialize with this package like this:
