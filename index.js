@@ -20,6 +20,12 @@ const prompter = (cz, commit) => {
       name: 'type',
       message: 'What type of commit:',
       choices: ['Feature', 'Bugfix', 'Refactor', 'Style Change', 'Documentation']
+    },
+    {
+      type: 'confirm',
+      name: 'fix',
+      message: 'Will this commit close the tickets? (Tickets will be moved to closed on push)',
+      default: false
     }
   ]).then((answers) => {
     formatCommit(commit, answers)
@@ -29,7 +35,8 @@ const prompter = (cz, commit) => {
 const formatCommit = (commit, answers) => {
   const singleTickets = answers.tickets.split(', ')
   const updatedTickets = singleTickets.map((ticket) => {
-    return '#' + ticket
+    const string = (answers.fix) ? 'fix #' + ticker : '#' + ticket
+    return string
   })
 
   commit([
