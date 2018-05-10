@@ -1,6 +1,6 @@
 {
   "name": "cz-scrumpy-commit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Commitizen conventions for scrumpy.io",
   "main": "index.js",
   "repository": "https://github.com/bdbch/cz-scrumpy-commit",
