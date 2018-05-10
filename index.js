@@ -12,7 +12,7 @@ const prompter = (cz, commit) => {
     {
       type: 'input',
       name: 'tickets',
-      message: 'Scrumpy Ticket IDs (required):\n',
+      message: 'Scrumpy Ticket IDs (required, split multiple via ", "):\n',
       validate: validateTicketIds
     },
     {
@@ -27,17 +27,16 @@ const prompter = (cz, commit) => {
 }
 
 const formatCommit = (commit, answers) => {
-  commit(filter([
-    `${answers.tickets}: `,
-    `[${answers.type}] `,
-    answers.message,
-  ]))
-}
-
-const filter = (array) => {
-  return array.filter((item) => {
-    return !!item
+  const singleTickets = answers.tickets.split(', ')
+  const updatedTickets = singleTickets.map((ticket) => {
+    return '#' + ticket
   })
+
+  commit([
+    `${updatedTickets.join(' ')}:`,
+    `[${answers.type}]`,
+    answers.message,
+  ].join(' '))
 }
 
 module.exports = {
