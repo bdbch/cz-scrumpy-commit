@@ -41,8 +41,7 @@ const formatCommit = (commit, answers) => {
 
   commit([
     `[${answers.type}]`,
-    answers.message,
-    '|'
+    answers.message + ' |',
     `${updatedTickets.join(' ')}`,
   ].join(' '))
 }
