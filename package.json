@@ -1,0 +1,21 @@
+{
+  "name": "cz-scrumpy-commit",
+  "version": "0.0.1",
+  "description": "Commitizen conventions for scrumpy.io",
+  "main": "index.js",
+  "repository": "https://github.com/bdbch/cz-scrumpy-commit",
+  "author": "Dominik Biedebach (https://www.dominikbiedebach.de/)",
+  "license": "MIT",
+  "keywords": [
+    "commitizen",
+    "commitizen adapter",
+    "scrumpy",
+    "scrumpy.io",
+    "scrumpy commit"
+  ],
+  "bugs": "https://github.com/bdbch/cz-scrumpy-commit/issues",
+  "homepage": "https://github.com/bdbch/cz-scrumpy-commit#readme",
+  "dependencies": {
+    "inquirer": "^1.1.3"
+  }
+}
